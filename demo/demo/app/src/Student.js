@@ -24,12 +24,22 @@ class Student extends Component {
             
                 <div>
                     <AppNav/>
-                    <h2>Students</h2>
+                    <h2>Students' name</h2>
                     {
                         Students.map( student => 
-                            <div id={student.id}>
-                                {student.name}
-                            </div>
+                                <div id={student.id}>
+                                    {student.name}
+                                </div>
+                        )
+
+                    }
+
+                    <h2>Students' subject</h2>
+                    {
+                        Students.map( student => 
+                                <div id={student.id}>
+                                    {student.materia}
+                                </div>
                         )
 
                     }

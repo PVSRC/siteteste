@@ -21,16 +21,16 @@ public class Student {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "senha")
-	private String senha;
+	@Column(name = "materia")
+	private String materia;
 
 	private Student() {
 
 	}
 
-	public Student(String name, String senha) {
+	public Student(String name, String materia) {
 		this.name = name;
-		this.senha = senha;
+		this.materia = materia;
     }
     
 	public Long getId() {
@@ -49,12 +49,12 @@ public class Student {
 		this.name = name;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getMateria() {
+		return materia;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setMateria(String materia) {
+		this.materia = materia;
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class Student {
 		return "Student{" +
 			"id=" + id +
 			", name='" + name + '\'' +
-			", senha='" + senha + '\'' +
+			", materia='" + materia + '\'' +
 			'}';
 	}
 

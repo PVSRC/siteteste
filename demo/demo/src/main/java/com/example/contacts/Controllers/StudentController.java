@@ -43,7 +43,7 @@ public class StudentController {
     public ResponseEntity<Student> putStudents(@PathVariable final Long id, @RequestBody final Student entity) {
         return this.repository.findById(id).map(student -> {
             student.setName(entity.getName());
-            student.setSenha(entity.getSenha());
+            student.setName(entity.getMateria());
             this.repository.save(entity);
             return ResponseEntity.ok().body(student);
         }).orElse(ResponseEntity.notFound().build());
