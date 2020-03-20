@@ -3,10 +3,36 @@ import AppNav from './AppNav';
 
 class Student extends Component {
 
-    state = {  
-        isLoading : true,
-        Students : []
+    constructor(props){
+        super(props)
+
+        this.state = {  
+            isLoading : true,
+            Students : []
+        }
+    
+        this.handleRemove= this.handleRemove.bind(this);
     }
+
+    async handleRemove(e, student){
+        var res = student._links.self.href.split("/");
+        var id = res[res.length - 1];
+
+        await fetch(`/students/${id}` , {
+            method: 'DELETE' ,
+            headers : {
+              'Accept' : 'application/json',
+              'Content-Type' : 'application/json'
+            }
+  
+          }).then(() => {
+            let updatedStudents = [...this.state.Students].filter(i => i.id !== id);
+            this.setState({Students : updatedStudents});
+            window.location.reload(true);
+          });
+      }
+
+    
  
     async componentDidMount(){
         const response=await fetch('/students');
@@ -24,26 +50,22 @@ class Student extends Component {
             
                 <div>
                     <AppNav/>
-                    <h2>Students' name</h2>
+                    <h2>Students</h2>
+                    <tr>
+                        <th style={{paddingRight:"10px"}}>Students' name</th>
+                        <th style={{paddingRight:"10px"}}>Students' subject</th>
+                        <th>Remove student</th>
+                    </tr>
                     {
                         Students.map( student => 
-                                <div id={student.id}>
-                                    {student.name}
-                                </div>
+                            <tr>
+                                <td>{student.name}</td>
+                                <td>{student.materia}</td>
+                                <td><button onClick={((e) => this.handleRemove(e, student))}>Delete</button></td>
+                            </tr>
                         )
 
                     }
-
-                    <h2>Students' subject</h2>
-                    {
-                        Students.map( student => 
-                                <div id={student.id}>
-                                    {student.materia}
-                                </div>
-                        )
-
-                    }
-
                 </div>
          );
     }
