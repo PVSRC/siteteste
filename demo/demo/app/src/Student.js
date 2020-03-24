@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import AppNav from './AppNav';
+import {Link} from 'react-router-dom';
+import {Button} from 'reactstrap';
+import { Title, Background, Center } from './Components';
 
 class Student extends Component {
 
@@ -49,23 +52,31 @@ class Student extends Component {
         return ( 
             
                 <div>
-                    <AppNav/>
-                    <h2>Students</h2>
-                    <tr>
-                        <th style={{paddingRight:"10px"}}>Students' name</th>
-                        <th style={{paddingRight:"10px"}}>Students' subject</th>
-                        <th>Remove student</th>
-                    </tr>
-                    {
-                        Students.map( student => 
-                            <tr>
-                                <td>{student.name}</td>
-                                <td>{student.materia}</td>
-                                <td><button onClick={((e) => this.handleRemove(e, student))}>Delete</button></td>
-                            </tr>
-                        )
+                    <Background>
+                        <AppNav/>
+                        <Title>
+                            <h2>Students</h2>
+                        </Title>
+                        <Center>
+                        <tr>
+                            <th style={{paddingRight:"10px"}}>Students' name</th>
+                            <th style={{paddingRight:"10px"}}>Students' subject</th>
+                            <th style={{paddingRight:"10px"}}>Remove student</th>
+                            
+                        </tr>
+                        {
+                            Students.map( student => 
+                                <tr>
+                                    <td>{student.name}</td>
+                                    <td>{student.materia}</td>
+                                    <td><Button onClick={((e) => this.handleRemove(e, student))}>Delete</Button></td>
+                                 
+                                </tr>
+                            )
 
-                    }
+                        }
+                        </Center>
+                    </Background>
                 </div>
          );
     }

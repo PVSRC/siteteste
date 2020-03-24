@@ -3,6 +3,7 @@ import AppNav from './AppNav';
 import './App.css'
 import {Container, Input, Button, Form, FormGroup, Label} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { Title, Background, Center } from './Components';
 
 class StudentInsertion extends Component {
 
@@ -52,10 +53,7 @@ class StudentInsertion extends Component {
       }
 
       async componentDidMount() {
-        const responseExp= await fetch('/api/expenses');
-        const bodyExp = await responseExp.json();
-        this.setState({Expsenses : bodyExp , isLoading :false});
-        console.log(bodyExp);
+        console.log(this.props.match.params);
     }
      
     render() { 
@@ -63,24 +61,30 @@ class StudentInsertion extends Component {
         
         return (
             <div>
-                <AppNav/>
-                <Container>
-                    <h2>Add Student to database</h2>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <Label for="name">Name</Label>
-                            <Input type="text" name="name" id="name" onChange={this.handleChange} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="materia">Materia</Label>
-                            <Input type="text" name="materia" id="materia" onChange={this.handleChange} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Button color="primary" type="submit">Save</Button>{' '}
-                            <Button color="secondary" tag={Link} to="/" >Cancel</Button>
-                        </FormGroup>
-                    </Form>
-                </Container>
+                <Background>
+                    <AppNav/>
+                    <Container>
+                        <Title>
+                            <h2>Add Student to database</h2>
+                        </Title>
+                        <Center>
+                            <Form onSubmit={this.handleSubmit}>
+                                <FormGroup>
+                                    <Label style={{paddingRight:"17px"}} for="name">Name</Label>
+                                    <Input type="text" name="name" id="name" onChange={this.handleChange} />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label style={{paddingRight:"5px"}} for="materia">Materia</Label>
+                                    <Input type="text" name="materia" id="materia" onChange={this.handleChange} />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Button color="primary" type="submit">Save</Button>{' '}
+                                    <Button color="secondary" tag={Link} to="/" >Cancel</Button>
+                                </FormGroup>
+                            </Form>
+                        </Center>
+                    </Container>
+                </Background>
             </div> 
          );
     }
