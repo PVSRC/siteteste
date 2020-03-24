@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppNav from './AppNav';
 import {Link} from 'react-router-dom';
 import {Button} from 'reactstrap';
+import styled from 'styled-components';
 import { Title, Background, Center } from './Components';
 
 class Student extends Component {
@@ -57,29 +58,35 @@ class Student extends Component {
                         <Title>
                             <h2>Students</h2>
                         </Title>
-                        <Center>
-                        <tr>
-                            <th style={{paddingRight:"10px"}}>Students' name</th>
-                            <th style={{paddingRight:"10px"}}>Students' subject</th>
-                            <th style={{paddingRight:"10px"}}>Remove student</th>
-                            
-                        </tr>
-                        {
-                            Students.map( student => 
-                                <tr>
-                                    <td>{student.name}</td>
-                                    <td>{student.materia}</td>
-                                    <td><Button onClick={((e) => this.handleRemove(e, student))}>Delete</Button></td>
-                                 
-                                </tr>
-                            )
+                        <Table>
+                            <tr >
+                                <th style={{paddingRight:"10px"}}>Students' name</th>
+                                <th style={{paddingRight:"10px"}}>Students' subject</th>
+                                <th style={{paddingRight:"10px"}}>Remove student</th>
+                                
+                                
+                            </tr>
+                            {
+                                Students.map( student => 
+                                    <tr>
+                                        <td>{student.name}</td>
+                                        <td>{student.materia}</td>
+                                        <td><Button onClick={((e) => this.handleRemove(e, student))}>Delete</Button></td>
+                                        
+                                    </tr>
+                                )
 
-                        }
-                        </Center>
+                            }
+                        </Table>
+                        
                     </Background>
                 </div>
          );
     }
 }
+
+const Table = styled.header`
+    margin-left:38%;
+`;
  
 export default Student;

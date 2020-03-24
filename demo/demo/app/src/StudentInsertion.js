@@ -53,7 +53,8 @@ class StudentInsertion extends Component {
       }
 
       async componentDidMount() {
-        console.log(this.props.match.params);
+        console.log(window.location.href);
+        console.log(window.location.href.split("/"));
     }
      
     render() { 

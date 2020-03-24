@@ -20,7 +20,7 @@ export const Background = styled.div`
 
 export const Center = styled.header`
     display:flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 `;
